@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un membre</title>
+</head>
+<body>
+    <h1>Ajouter un membre</h1>
+    <form method="post" action="{{ url_for('ajouter_membre') }}">
+        <label for="nom">Nom:</label>
+        <input type="text" name="nom" required>
+        <br>
+        <label for="prenom">Prénom:</label>
+        <input type="text" name="prenom" required>
+        <br>
+        <input type="submit" value="Ajouter">
+    </form>
+    <br>
+    <a href="{{ url_for('accueil') }}">Retour à la liste des membres</a>
+</body>
+</html>

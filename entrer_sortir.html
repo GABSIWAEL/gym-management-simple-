@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrer/Sortir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des membres avec entrée/sortie</h1>
+    <form method="post" action="{{ url_for('entrer_sortir') }}">
+        <label for="member_id">Sélectionnez un membre:</label>
+        <select name="member_id" required>
+            {% for entry in entries %}
+                <option value="{{ entry[0] }}">{{ entry[1] }}, {{ entry[2] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="action">Action:</label>
+        <select name="action" required>
+            <option value="entrer">Entrer</option>
+            <option value="sortir">Sortir</option>
+        </select>
+        <br>
+        <input type="submit" value="Valider">
+    </form>
+    <br>
+    <h2>Membres actuellement dans le gymnase</h2>
+    <ul>
+        {% for entry in entries %}
+            {% if entry[3] is not none %}
+                <li>{{ entry[1] }}, {{ entry[2] }} (Entrée: {{ entry[3] }}, Sortie: {{ entry[4] }})</li>
+            {% else %}
+                <li>{{ entry[1] }}, {{ entry[2] }} (Entrée: {{ entry[3] }})</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('accueil') }}">Retour à la liste des membres</a>
+</body>
+</html>

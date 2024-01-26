@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym System</title>
+</head>
+<body>
+    <h1>Liste des membres</h1>
+    <ul>
+        {% for membre in membres %}
+            <li>{{ membre[1] }}, {{ membre[2] }} (Expiration: {{ membre[3] }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('ajouter_membre') }}">Ajouter un membre</a>
+    <br>
+    <a href="{{ url_for('entrer_sortir') }}">Entrer/Sortir</a>
+</body>
+</html>
